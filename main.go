@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"io/ioutil"
 )
 
 type KubeHaven struct {
@@ -34,6 +35,8 @@ func (kh *KubeHaven) KubernetesHeadRequest() string {
 		fmt.Printf("error making http request: %s\n", err)
 		os.Exit(1)
 	}
+	resData, err := ioutil.ReadAll(res.Body)
+	fmt.Printf(string(resData))
 	return strconv.Itoa(res.StatusCode)
 }
 
