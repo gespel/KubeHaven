@@ -2,20 +2,20 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"strconv"
-	"io/ioutil"
 )
 
 type KubeHaven struct {
-	name	string
-	version	string
+	name    string
+	version string
 }
 
 func newKubeHaven() KubeHaven {
 	kh := KubeHaven{
-		name: "KubeHaven",
+		name:    "KubeHaven",
 		version: "v0.01",
 	}
 	return kh
@@ -30,12 +30,12 @@ func (kh *KubeHaven) Version() string {
 }
 
 func (kh *KubeHaven) KubernetesHeadRequest() string {
-	res, err := http.Get("https://www.google.de/")
+	res, err := http.Get("https://sten-heimbrodt.de/")
 	if err != nil {
 		fmt.Printf("error making http request: %s\n", err)
 		os.Exit(1)
 	}
-	resData, err := ioutil.ReadAll(res.Body)
+	resData, err := io.ReadAll(res.Body)
 	fmt.Printf(string(resData))
 	return strconv.Itoa(res.StatusCode)
 }
