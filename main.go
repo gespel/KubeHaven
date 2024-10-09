@@ -29,7 +29,7 @@ func (kh *KubeHaven) Version() string {
 	return kh.version
 }
 
-func (kh *KubeHaven) KubernetesHeadRequest() string {
+func (kh *KubeHaven) KubernetesAPIRequest() string {
 	res, err := http.Get("https://sten-heimbrodt.de/")
 	if err != nil {
 		fmt.Printf("error making http request: %s\n", err)
@@ -45,5 +45,5 @@ func main() {
 	kh := newKubeHaven()
 	fmt.Println(kh.Name())
 	fmt.Println(kh.Version())
-	fmt.Println(kh.KubernetesHeadRequest())
+	fmt.Println(kh.KubernetesAPIRequest())
 }
